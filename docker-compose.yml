@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:17
+    container_name: lab1_postgres
+    environment:
+      - POSTGRES_USER=sanya
+      - POSTGRES_PASSWORD=pass
+      - POSTGRES_DB=lab1_bigdata
+    ports:
+      - "5432"
+    volumes:
+      - ./data:/docker-entrypoint-initdb.d/data
+      - ./initdb:/docker-entrypoint-initdb.d/initdb
+    networks:
+      - lab_net
+
+networks:
+  lab_net:
+    driver: bridge
